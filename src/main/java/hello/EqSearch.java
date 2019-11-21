@@ -5,10 +5,7 @@ public class EqSearch{
 	private int distance;
 	private int minmag;
 	
-	public EqSearch(){
-		this.distance = 0;
-		this.minmag = 0;
-	}
+	public EqSearch(){}
 
 	public int getDistance(){
 		return this.distance;
