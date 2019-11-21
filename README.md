@@ -4,6 +4,7 @@ A simple Spring Boot webapp using:
 * Github OAuth
 
 Web Page of Document: https://ucsb-cs56-f19.github.io/lab07-nwang01/
+App Website: https://cs56-f19-lab07-nwang01.herokuapp.com/
 
 # Running on Localhost.
 
