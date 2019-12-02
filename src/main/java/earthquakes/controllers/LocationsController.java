@@ -1,5 +1,8 @@
 package earthquakes.controllers;
 
+ import java.util.List;
+ import earthquakes.osm.Place;
+
  import earthquakes.geojson.FeatureCollection;
  import earthquakes.searches.LocSearch;
  import earthquakes.services.EarthquakeQueryService;
@@ -39,6 +42,8 @@ package earthquakes.controllers;
          model.addAttribute("locSearch", locSearch);
          String json = LQS.getJSON(locSearch.getLocation());
          model.addAttribute("json",json);
+	 List<Place> Places = Place.listFromJson(json);
+         model.addAttribute("Places",Places);
          return "locations/results";
      }
  }
