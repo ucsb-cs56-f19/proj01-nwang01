@@ -4,6 +4,9 @@ public class EqSearch{
 	
 	private int distance;
 	private int minmag;
+	private double lat;
+	private double lon;
+	private String location;
 	
 	public EqSearch(){}
 
@@ -15,6 +18,20 @@ public class EqSearch{
 		return this.minmag;
 	}
 
+	public double getLon(){
+                return this.lon;
+        }
+
+	public double getLat(){
+                return this.lat;
+        }
+
+	public String getLocation(){
+                return this.location;
+        }
+
+
+
 	public void setDistance(int distance){
 		this.distance = distance;
 	}
@@ -22,6 +39,21 @@ public class EqSearch{
 	public void setMinmag(int minmag){
 		this.minmag = minmag;
 	}
+
+	public void setLat(double lat){
+                this.lat = lat;
+        }
+
+	public void setLon(double lon){
+                this.lon = lon;
+        }
+
+	public void setLocation(String location){
+                this.location = location;
+        }
+
+
+
 } 
 
 
