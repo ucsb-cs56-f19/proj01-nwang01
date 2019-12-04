@@ -61,8 +61,9 @@ package earthquakes.controllers;
      }
 
      @GetMapping("/locations")
-     public String index(Model model) {
-         Iterable<Location> locations= locationRepository.findAll();
+     public String index(Model model, OAuth2AuthenticationToken token) {
+         String uid = token.getPrincipal().getAttributes().get("id").toString();
+         Iterable<Location> locations= locationRepository.findByUid(uid);
          model.addAttribute("locations", locations);
          return "locations/index";
     }
@@ -72,7 +73,7 @@ package earthquakes.controllers;
       	String uid = token.getPrincipal().getAttributes().get("id").toString();
       	location.setUid(uid);
       	locationRepository.save(location);
-      	model.addAttribute("locations", locationRepository.findAll());
+      	model.addAttribute("locations", locationRepository.findByUid(uid));
       	return "locations/index";
     }
 
@@ -81,7 +82,7 @@ package earthquakes.controllers;
 	Location location = locationRepository.findById(id)
 		.orElseThrow(() -> new IllegalArgumentException("Invalid courseoffering Id:" + id));
     	locationRepository.delete(location);
-    	model.addAttribute("locations", locationRepository.findAll());
+    	model.addAttribute("locations", locationRepository.findByUid(location.getUid()));
     	return "locations/index";
     }
 
