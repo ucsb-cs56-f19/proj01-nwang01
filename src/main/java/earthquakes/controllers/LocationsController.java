@@ -68,10 +68,12 @@ package earthquakes.controllers;
     }
 
     @PostMapping("/locations/add")
-    public String add(Location location, Model model) {
-      locationRepository.save(location);
-      model.addAttribute("locations", locationRepository.findAll());
-      return "locations/index";
+    public String add(Location location, Model model, OAuth2AuthenticationToken token) {
+      	String uid = token.getPrincipal().getAttributes().get("id").toString();
+      	location.setUid(uid);
+      	locationRepository.save(location);
+      	model.addAttribute("locations", locationRepository.findAll());
+      	return "locations/index";
     }
 
     @DeleteMapping("/locations/delete/{id}")
@@ -82,4 +84,12 @@ package earthquakes.controllers;
     	model.addAttribute("locations", locationRepository.findAll());
     	return "locations/index";
     }
+
+    @GetMapping("/locations/admin")
+    public String admin(Model model) {
+	Iterable<Location> locations= locationRepository.findAll();
+	model.addAttribute("locations", locations);
+        return "locations/admin";
+     }
+
  }
